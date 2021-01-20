@@ -10,8 +10,10 @@ import study.datajpa.entity.Team;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.shouldHaveThrown;
 
 @SpringBootTest
 @Transactional
@@ -144,5 +146,27 @@ class MemberRepositoryTest {
         for (Member member : result) {
             System.out.println(member);
         }
+    }
+
+    @Test
+    public void returnType() {
+        // given
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("BBB", 10);
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        // when
+        Member findMember = memberRepository.findMemberByUsername("AAA");
+        List<Member> list = memberRepository.findListByUsername("AAA");
+        Optional<Member> optional = memberRepository.findOptionalByUsername("AAA");
+
+        // then
+        System.out.println(findMember);
+        for (Member member : list) {
+            System.out.println(member);
+        }
+        System.out.println(optional);
+
     }
 }
