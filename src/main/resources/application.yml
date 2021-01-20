@@ -1,0 +1,26 @@
+# 콘솔 색상 설정
+spring:
+  output:
+    ansi:
+      enabled: always
+
+  # DB 설정
+  datasource:
+    url: jdbc:h2:tcp:localhost/~/jpastudy
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  # jpa 설정
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        #show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+
+# 로그 설정
+logging.level:
+  org.hibernate.SQL: debug
